@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Holidaytypes list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Payment</th>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for holidaytype in holidaytypes %}
+            <tr>
+                <td><a href="{{ path('holidaytype_show', { 'id': holidaytype.id }) }}">{{ holidaytype.name }}</a></td>
+                <td>{{ holidaytype.payment }}</td>
+                <td>{{ holidaytype.description }}</td>
+                <td>{{ holidaytype.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('holidaytype_show', { 'id': holidaytype.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('holidaytype_edit', { 'id': holidaytype.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('holidaytype_new') }}">Create a new holidaytype</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Doorlog</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Dir</th>
+                <td>{{ doorlog.dir }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{% if doorlog.date %}{{ doorlog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Id</th>
+                <td>{{ doorlog.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('doorlog_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('doorlog_edit', { 'id': doorlog.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

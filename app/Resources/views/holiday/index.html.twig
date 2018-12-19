@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Holidays list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Createdat</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for holiday in holidays %}
+            <tr>
+                <td><a href="{{ path('holiday_show', { 'id': holiday.id }) }}">{{ holiday.date }}</a></td>
+                <td>{% if holiday.createdat %}{{ holiday.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ holiday.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('holiday_show', { 'id': holiday.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('holiday_edit', { 'id': holiday.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('holiday_new') }}">Create a new holiday</a>
+        </li>
+    </ul>
+{% endblock %}

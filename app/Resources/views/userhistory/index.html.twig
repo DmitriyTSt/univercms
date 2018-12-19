@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Userhistories list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Description</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for userhistory in userhistories %}
+            <tr>
+                <td><a href="{{ path('userhistory_show', { 'id': userhistory.id }) }}">{{ userhistory.description }}</a></td>
+                <td>{{ userhistory.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('userhistory_show', { 'id': userhistory.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('userhistory_edit', { 'id': userhistory.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

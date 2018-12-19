@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Refreshercourses list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for refreshercourse in refreshercourses %}
+            <tr>
+                <td><a href="{{ path('refreshercourse_show', { 'id': refreshercourse.id }) }}">{{ refreshercourse.title }}</a></td>
+                <td>{% if refreshercourse.date %}{{ refreshercourse.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ refreshercourse.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('refreshercourse_show', { 'id': refreshercourse.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('refreshercourse_edit', { 'id': refreshercourse.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('refreshercourse_new') }}">Create a new refreshercourse</a>
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bonusreasons list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bonusreason in bonusreasons %}
+            <tr>
+                <td><a href="{{ path('bonusreason_show', { 'id': bonusreason.id }) }}">{{ bonusreason.name }}</a></td>
+                <td>{{ bonusreason.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bonusreason_show', { 'id': bonusreason.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bonusreason_edit', { 'id': bonusreason.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bonusreason_new') }}">Create a new bonusreason</a>
+        </li>
+    </ul>
+{% endblock %}

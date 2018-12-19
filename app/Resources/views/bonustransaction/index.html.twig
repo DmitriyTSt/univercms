@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Bonustransactions list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Createdat</th>
+                <th>Count</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for bonustransaction in bonustransactions %}
+            <tr>
+                <td><a href="{{ path('bonustransaction_show', { 'id': bonustransaction.id }) }}">{{ bonustransaction.createdat }}</a></td>
+                <td>{{ bonustransaction.count }}</td>
+                <td>{{ bonustransaction.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('bonustransaction_show', { 'id': bonustransaction.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('bonustransaction_edit', { 'id': bonustransaction.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('bonustransaction_new') }}">Create a new bonustransaction</a>
+        </li>
+    </ul>
+{% endblock %}

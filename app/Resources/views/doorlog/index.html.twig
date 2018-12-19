@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Doorlogs list</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Dir</th>
+                <th>Date</th>
+                <th>Id</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for doorlog in doorlogs %}
+            <tr>
+                <td><a href="{{ path('doorlog_show', { 'id': doorlog.id }) }}">{{ doorlog.dir }}</a></td>
+                <td>{% if doorlog.date %}{{ doorlog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{{ doorlog.id }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('doorlog_show', { 'id': doorlog.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('doorlog_edit', { 'id': doorlog.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('doorlog_new') }}">Create a new doorlog</a>
+        </li>
+    </ul>
+{% endblock %}

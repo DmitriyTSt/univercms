@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Bonustransaction" table="BonusTransaction">
+    <indexes>
+      <index name="IDX_7FB6636221CFA9F6" columns="cmsUser"/>
+      <index name="IDX_7FB66362BDAFD8C8" columns="author"/>
+      <index name="IDX_7FB663626DE44026" columns="description"/>
+    </indexes>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="createdat" type="datetime" column="createdAt" nullable="false"/>
+    <field name="count" type="integer" column="count" nullable="false">
+      <options>
+        <option name="unsigned"/>
+      </options>
+    </field>
+    <many-to-one field="cmsuser" target-entity="Cmsuser" fetch="LAZY">
+      <join-columns>
+        <join-column name="cmsUser" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="author" target-entity="Cmsuser" fetch="LAZY">
+      <join-columns>
+        <join-column name="author" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+    <many-to-one field="description" target-entity="Bonusreason" fetch="LAZY">
+      <join-columns>
+        <join-column name="description" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>

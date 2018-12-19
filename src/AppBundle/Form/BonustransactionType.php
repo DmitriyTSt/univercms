@@ -13,7 +13,7 @@ class BonustransactionType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('createdat')->add('count')->add('cmsuser')->add('author')->add('description');
+        $builder->add('count')->add('cmsuser')->add('author')->add('description');
     }/**
      * {@inheritdoc}
      */

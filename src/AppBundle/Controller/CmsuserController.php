@@ -3,9 +3,12 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Cmsuser;
+use AppBundle\Entity\Department;
+use Doctrine\ORM\Query\ResultSetMapping;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Cmsuser controller.
@@ -28,6 +31,28 @@ class CmsuserController extends Controller
 
         return $this->render('cmsuser/index.html.twig', array(
             'cmsusers' => $cmsusers,
+        ));
+    }
+
+    /**
+     * Lists all cmsuser where department.
+     *
+     * @Route("/search/", name="cmsuser_search_by_department")
+     * @Method("GET")
+     */
+    public function searchByDepartment(Request $request) {
+        $users = [];
+        $department = null;
+        if ($request->query->has("department")) {
+            $departmentString = $request->query->get("department");
+            $department = $this->getDoctrine()->getManager()->getRepository(Department::class)
+                ->findOneBy(['name' => $departmentString]);
+            $users = $this->getDoctrine()->getManager()->getRepository(Cmsuser::class)
+                ->findBy(['department' => $department]);
+        }
+        return $this->render('cmsuser/usersByDepartment.html.twig', array(
+            'department' => $department,
+            'cmsusers' => $users,
         ));
     }
 
@@ -66,6 +91,8 @@ class CmsuserController extends Controller
     public function showAction(Cmsuser $cmsuser)
     {
         $deleteForm = $this->createDeleteForm($cmsuser);
+
+        $em = $this->getDoctrine()->getManager();
 
         return $this->render('cmsuser/show.html.twig', array(
             'cmsuser' => $cmsuser,

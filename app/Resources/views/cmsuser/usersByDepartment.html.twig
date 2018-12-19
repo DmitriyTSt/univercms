@@ -1,8 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cmsusers list</h1>
+    <h1>Пользователи из отдела: {{ department ? department.name : "Введите отдел" }}</h1>
 
+    <form class="form" action="{{ path('cmsuser_search_by_department') }}" method="get">
+        <div class="row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <input id="department" class="form-control" placeholder="Отдел" name="department" type="text">
+                </div>
+            </div>
+            <div class="col-md-2">
+                <button type="submit" class="btn">Submit</button>
+            </div>
+        </div>
+    </form>
+
+    {% if (cmsusers)  %}
     <table class="table">
         <thead>
             <tr>
@@ -44,10 +58,5 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <ul>
-        <li>
-            <a href="{{ path('cmsuser_new') }}">Create a new cmsuser</a>
-        </li>
-    </ul>
+    {% endif %}
 {% endblock %}

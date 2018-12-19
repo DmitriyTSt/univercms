@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -12,6 +13,13 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Cmsuser
 {
+    /**
+     * @var Doorlog[]|ArrayCollection
+     *
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Doorlog", mappedBy="cmsuser")
+     */
+    private $logs;
+
     /**
      * @var string
      *
@@ -273,7 +281,26 @@ class Cmsuser
         $this->post = $post;
     }
 
+    /**
+     * @return Doorlog[]|ArrayCollection
+     */
+    public function getLogs()
+    {
+        return $this->logs;
+    }
 
+    /**
+     * @param Doorlog[]|ArrayCollection $logs
+     */
+    public function setLogs($logs)
+    {
+        $this->logs = $logs;
+    }
+
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->surname . ' ' . $this->patronymic;
+    }
 
 }
 

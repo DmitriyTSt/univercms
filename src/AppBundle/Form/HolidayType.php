@@ -13,7 +13,7 @@ class HolidayType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('date')->add('createdat')->add('cmsuser')->add('author')->add('description')->add('holidaytype');
+        $builder->add('date')->add('cmsuser')->add('author')->add('description')->add('holidaytype');
     }/**
      * {@inheritdoc}
      */

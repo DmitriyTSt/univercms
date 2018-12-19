@@ -188,6 +188,9 @@ class Holiday
     }
 
 
-
+    public function __construct()
+    {
+        $this->createdat = new \DateTime('now');
+    }
 }
 

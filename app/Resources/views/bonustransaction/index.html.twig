@@ -15,9 +15,9 @@
         <tbody>
         {% for bonustransaction in bonustransactions %}
             <tr>
-                <td><a href="{{ path('bonustransaction_show', { 'id': bonustransaction.id }) }}">{{ bonustransaction.createdat }}</a></td>
+                <td><a href="{{ path('bonustransaction_show', { 'id': bonustransaction.id }) }}">{{ bonustransaction.id }}</a></td>
+                <td>{% if bonustransaction.createdat %}{{ bonustransaction.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ bonustransaction.count }}</td>
-                <td>{{ bonustransaction.id }}</td>
                 <td>
                     <ul>
                         <li>

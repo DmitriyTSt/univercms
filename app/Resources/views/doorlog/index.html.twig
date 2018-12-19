@@ -6,18 +6,20 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Dir</th>
-                <th>Date</th>
                 <th>Id</th>
+                <th>Направление</th>
+                <th>Пользователь</th>
+                <th>Date</th>
                 <th>Actions</th>
             </tr>
         </thead>
         <tbody>
         {% for doorlog in doorlogs %}
             <tr>
-                <td><a href="{{ path('doorlog_show', { 'id': doorlog.id }) }}">{{ doorlog.dir }}</a></td>
+                <td><a href="{{ path('doorlog_show', { 'id': doorlog.id }) }}">{{ doorlog.id }}</a></td>
+                <td>{{ doorlog.dir == 1 ? "вход" : "выход" }}</td>
+                <td>{{ doorlog.cmsuser }}</td>
                 <td>{% if doorlog.date %}{{ doorlog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
-                <td>{{ doorlog.id }}</td>
                 <td>
                     <ul>
                         <li>

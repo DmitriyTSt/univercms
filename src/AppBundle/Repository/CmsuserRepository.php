@@ -16,16 +16,14 @@ class CmsuserRepository extends EntityRepository
 {
     public function countUsersInDepartment($departmentId) {
         $em = $this->getEntityManager();
-        $qb = $em->createNativeQuery(
-            'exec CountUserInDepartment @departmentId = :id',
+
+        $qb = $em->getConnection()->prepare(
+            "exec CountUserInDepartment @departmentId = :id",
             new ResultSetMapping()
         );
-        $qb->setParameters(
-            array(
-                'id' => $departmentId
-            ));
+        $qb->bindValue('id', $departmentId);
         $qb->execute();
         $em->flush();
-        return $qb->getResult();
+        return $qb->fetch()['CountInDep'];
     }
 }

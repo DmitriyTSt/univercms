@@ -50,8 +50,8 @@ class CmsuserController extends Controller
                 ->findOneBy(['name' => $departmentString]);
             $users = $this->getDoctrine()->getManager()->getRepository(Cmsuser::class)
                 ->findBy(['department' => $department]);
-            var_dump(get_class($this->getDoctrine()->getRepository(Cmsuser::class))); exit;
-            $count = count($users); //$this->getDoctrine()->getRepository(Cmsuser::class)->countUsersInDepartment($department->getId());
+            //var_dump(get_class($this->getDoctrine()->getRepository(Cmsuser::class))); exit;
+            $count = $this->getDoctrine()->getRepository(Cmsuser::class)->countUsersInDepartment($department->getId());
         }
         return $this->render('cmsuser/usersByDepartment.html.twig', array(
             'usersCount' => $count,
@@ -96,9 +96,15 @@ class CmsuserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($cmsuser);
 
-        $repository = $this->getDoctrine()->getRepository(Cmsuser::class);
+//        $seconds = 0;
+//        for ($i = 0; $i < $cmsuser->getLogs()->count() - 1; $i += 2) {
+//            $seconds += $cmsuser->getLogs()[$i + 1]->getDate()->getTimestamp() -
+//                $cmsuser->getLogs()[$i]->getDate()->getTimestamp();
+//        }
+//        $timeInThisMonth = $seconds;
 
         return $this->render('cmsuser/show.html.twig', array(
+            'monthTime' => 0,
             'cmsuser' => $cmsuser,
             'delete_form' => $deleteForm->createView(),
         ));

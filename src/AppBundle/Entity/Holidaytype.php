@@ -107,6 +107,9 @@ class Holidaytype
     }
 
 
-
+    public function __toString()
+    {
+        return $this->name;
+    }
 }
 

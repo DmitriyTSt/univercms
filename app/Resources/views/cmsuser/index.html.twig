@@ -1,7 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Cmsusers list</h1>
+    <h1>Пользователи</h1>
+    <h3><a href="{{ path('cmsuser_search_by_department') }}">Поиск по отделам</a></h3>
 
     <table class="table">
         <thead>

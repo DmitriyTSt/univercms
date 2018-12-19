@@ -43,14 +43,17 @@ class CmsuserController extends Controller
     public function searchByDepartment(Request $request) {
         $users = [];
         $department = null;
+        $count = 0;
         if ($request->query->has("department")) {
             $departmentString = $request->query->get("department");
             $department = $this->getDoctrine()->getManager()->getRepository(Department::class)
                 ->findOneBy(['name' => $departmentString]);
             $users = $this->getDoctrine()->getManager()->getRepository(Cmsuser::class)
                 ->findBy(['department' => $department]);
+            $count = $this->getDoctrine()->getRepository(Cmsuser::class)->countUsersInDepartment($department->getId());
         }
         return $this->render('cmsuser/usersByDepartment.html.twig', array(
+            'usersCount' => $count,
             'department' => $department,
             'cmsusers' => $users,
         ));
@@ -92,7 +95,7 @@ class CmsuserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($cmsuser);
 
-        $em = $this->getDoctrine()->getManager();
+        $repository = $this->getDoctrine()->getRepository(Cmsuser::class);
 
         return $this->render('cmsuser/show.html.twig', array(
             'cmsuser' => $cmsuser,

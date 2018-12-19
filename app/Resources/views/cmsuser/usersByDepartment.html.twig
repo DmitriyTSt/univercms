@@ -2,7 +2,9 @@
 
 {% block body %}
     <h1>Пользователи из отдела: {{ department ? department.name : "Введите отдел" }}</h1>
-
+    {% if (department) %}
+    <h2>Пользователей в отделе : {{ usersCount }}</h2>
+    {% endif %}
     <form class="form" action="{{ path('cmsuser_search_by_department') }}" method="get">
         <div class="row">
             <div class="col-md-3">
@@ -11,7 +13,7 @@
                 </div>
             </div>
             <div class="col-md-2">
-                <button type="submit" class="btn">Submit</button>
+                <button type="submit" class="btn">Найти</button>
             </div>
         </div>
     </form>

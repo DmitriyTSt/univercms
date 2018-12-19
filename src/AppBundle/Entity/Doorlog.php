@@ -38,7 +38,7 @@ class Doorlog
     /**
      * @var \AppBundle\Entity\Cmsuser
      *
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cmsuser")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Cmsuser", inversedBy="logs")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="cmsUser", referencedColumnName="id")
      * })

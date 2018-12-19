@@ -50,7 +50,8 @@ class CmsuserController extends Controller
                 ->findOneBy(['name' => $departmentString]);
             $users = $this->getDoctrine()->getManager()->getRepository(Cmsuser::class)
                 ->findBy(['department' => $department]);
-            $count = $this->getDoctrine()->getRepository(Cmsuser::class)->countUsersInDepartment($department->getId());
+            var_dump(get_class($this->getDoctrine()->getRepository(Cmsuser::class))); exit;
+            $count = count($users); //$this->getDoctrine()->getRepository(Cmsuser::class)->countUsersInDepartment($department->getId());
         }
         return $this->render('cmsuser/usersByDepartment.html.twig', array(
             'usersCount' => $count,

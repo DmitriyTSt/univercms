@@ -8,9 +8,9 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Cmsuser
  *
- * @ORM\Table(name="CmsUser", indexes={@ORM\Index(name="IDX_EE72906ACD1DE18A", columns={"department"}), @ORM\Index(name="IDX_EE72906A5A8A6C8D", columns={"post"})})
- * @ORM\Entity
  * @ORM\Entity(repositoryClass="AppBundle\Repository\CmsuserRepository")
+ * @ORM\Table(name="CmsUser", indexes={@ORM\Index(name="IDX_EE72906ACD1DE18A", columns={"department"}), @ORM\Index(name="IDX_EE72906A5A8A6C8D", columns={"post"})})
+ *
  */
 class Cmsuser
 {

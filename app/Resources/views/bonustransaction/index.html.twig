@@ -10,7 +10,6 @@
                 <th>Пользователь</th>
                 <th>Createdat</th>
                 <th>Count</th>
-                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
@@ -20,24 +19,16 @@
                 <td>{{ bonustransaction.cmsuser }}</td>
                 <td>{% if bonustransaction.createdat %}{{ bonustransaction.createdat|date('Y-m-d H:i:s') }}{% endif %}</td>
                 <td>{{ bonustransaction.count }}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('bonustransaction_show', { 'id': bonustransaction.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('bonustransaction_edit', { 'id': bonustransaction.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% if app.user.role == "ROLE_ADMIN" %}
     <ul>
         <li>
             <a href="{{ path('bonustransaction_new') }}">Create a new bonustransaction</a>
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

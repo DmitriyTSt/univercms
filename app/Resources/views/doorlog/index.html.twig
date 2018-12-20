@@ -10,7 +10,9 @@
                 <th>Направление</th>
                 <th>Пользователь</th>
                 <th>Date</th>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{ doorlog.dir == 1 ? "вход" : "выход" }}</td>
                 <td>{{ doorlog.cmsuser }}</td>
                 <td>{% if doorlog.date %}{{ doorlog.date|date('Y-m-d H:i:s') }}{% endif %}</td>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <td>
                     <ul>
                         <li>
@@ -30,14 +33,17 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% if app.user.role == "ROLE_ADMIN" %}
     <ul>
         <li>
             <a href="{{ path('doorlog_new') }}">Create a new doorlog</a>
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

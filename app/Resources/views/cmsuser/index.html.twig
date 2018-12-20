@@ -16,7 +16,9 @@
                 <th>Телефон</th>
                 <th>Количество бонусов</th>
                 <th>ID</th>
-                <th>Действия</th>
+                {% if app.user.role == "ROLE_ADMIN" %}
+                    <th>Действия</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -31,6 +33,7 @@
                 <td>{{ cmsuser.phone }}</td>
                 <td>{{ cmsuser.countBonus }}</td>
                 <td>{{ cmsuser.id }}</td>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <td>
                     <ul>
                         <li>
@@ -41,14 +44,17 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% if app.user.role == "ROLE_ADMIN" %}
     <ul>
         <li>
             <a href="{{ path('cmsuser_new') }}">Create a new cmsuser</a>
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

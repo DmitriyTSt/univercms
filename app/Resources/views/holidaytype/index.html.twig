@@ -10,7 +10,9 @@
                 <th>Payment</th>
                 <th>Description</th>
                 <th>Id</th>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -20,6 +22,7 @@
                 <td>{{ holidaytype.payment }}</td>
                 <td>{{ holidaytype.description }}</td>
                 <td>{{ holidaytype.id }}</td>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <td>
                     <ul>
                         <li>
@@ -30,14 +33,17 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% if app.user.role == "ROLE_ADMIN" %}
     <ul>
         <li>
             <a href="{{ path('holidaytype_new') }}">Create a new holidaytype</a>
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

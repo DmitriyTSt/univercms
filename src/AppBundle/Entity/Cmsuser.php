@@ -24,21 +24,21 @@ class Cmsuser
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=64, nullable=false)
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="surname", type="string", length=64, nullable=false)
+     * @ORM\Column(name="surname", type="string", length=255, nullable=false)
      */
     private $surname;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="patronymic", type="string", length=64, nullable=false)
+     * @ORM\Column(name="patronymic", type="string", length=255, nullable=false)
      */
     private $patronymic;
 
@@ -52,21 +52,21 @@ class Cmsuser
     /**
      * @var string
      *
-     * @ORM\Column(name="avatar", type="string", length=256, nullable=true)
+     * @ORM\Column(name="avatar", type="string", length=255, nullable=true)
      */
     private $avatar;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=64, nullable=false)
+     * @ORM\Column(name="email", type="string", length=255, nullable=false)
      */
     private $email;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="phone", type="string", length=15, nullable=true)
+     * @ORM\Column(name="phone", type="string", length=255, nullable=true)
      */
     private $phone;
 
@@ -75,7 +75,7 @@ class Cmsuser
      *
      * @ORM\Column(name="count_bonus", type="integer", nullable=false)
      */
-    private $countBonus = '0';
+    private $countBonus = 0;
 
     /**
      * @var integer

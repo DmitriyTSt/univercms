@@ -9,7 +9,9 @@
                 <th>Name</th>
                 <th>Addr</th>
                 <th>Id</th>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <th>Actions</th>
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -18,6 +20,7 @@
                 <td><a href="{{ path('area_show', { 'id': area.id }) }}">{{ area.name }}</a></td>
                 <td>{{ area.addr }}</td>
                 <td>{{ area.id }}</td>
+                {% if app.user.role == "ROLE_ADMIN" %}
                 <td>
                     <ul>
                         <li>
@@ -28,14 +31,17 @@
                         </li>
                     </ul>
                 </td>
+                {% endif %}
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
+    {% if app.user.role == "ROLE_ADMIN" %}
     <ul>
         <li>
             <a href="{{ path('area_new') }}">Create a new area</a>
         </li>
     </ul>
+    {% endif %}
 {% endblock %}

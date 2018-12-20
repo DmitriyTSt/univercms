@@ -54,13 +54,10 @@
         <li>
             <a href="{{ path('cmsuser_index') }}">Back to the list</a>
         </li>
+        {% if (app.user.role == "ROLE_ADMIN") or (app.user.id == cmsuser.id) %}
         <li>
             <a href="{{ path('cmsuser_edit', { 'id': cmsuser.id }) }}">Edit</a>
         </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
+        {% endif %}
     </ul>
 {% endblock %}

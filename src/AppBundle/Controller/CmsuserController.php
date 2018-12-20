@@ -96,12 +96,12 @@ class CmsuserController extends Controller
     {
         $deleteForm = $this->createDeleteForm($cmsuser);
 
-//        $seconds = 0;
-//        for ($i = 0; $i < $cmsuser->getLogs()->count() - 1; $i += 2) {
-//            $seconds += $cmsuser->getLogs()[$i + 1]->getDate()->getTimestamp() -
-//                $cmsuser->getLogs()[$i]->getDate()->getTimestamp();
-//        }
-//        $timeInThisMonth = $seconds;
+        $seconds = 0;
+        for ($i = 0; $i < $cmsuser->getLogs()->count() - 1; $i += 2) {
+            $seconds += $cmsuser->getLogs()[$i + 1]->getDate() -
+                $cmsuser->getLogs()[$i]->getDate();
+        }
+        $timeInThisMonth = $seconds;
 
         return $this->render('cmsuser/show.html.twig', array(
             'monthTime' => 0,

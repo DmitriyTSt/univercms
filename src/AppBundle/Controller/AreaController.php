@@ -101,8 +101,8 @@ class AreaController extends Controller
     /**
      * Deletes a area entity.
      *
-     * @Route("/{id}", name="area_delete")
-     * @Method("DELETE")
+     * @Route("/{id}/delete", name="area_delete")
+     * @Method("GET")
      */
     public function deleteAction(Request $request, Area $area)
     {
@@ -127,9 +127,8 @@ class AreaController extends Controller
      */
     private function createDeleteForm(Area $area)
     {
-        return $this->createFormBuilder()
+        return $this->createFormBuilder()->setMethod('GET')
             ->setAction($this->generateUrl('area_delete', array('id' => $area->getId())))
-            ->setMethod('DELETE')
             ->getForm()
         ;
     }
